@@ -74,6 +74,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
         android:maxEms="4"
         android:maxLines="1"
         android:text="@string/VERYBIGSTRING"

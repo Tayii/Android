@@ -6,4 +6,5 @@
     <color name="colorPrimary60">#99F18E4E</color>
     <color name="colorPrimary12">#1FF18E4E</color>
     <color name="colorBackground">#333</color>
+    <color name="colorSelectedItem">#883838</color>
 </resources>

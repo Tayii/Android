@@ -14,6 +14,9 @@ public class SongAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     ArrayList<Song> objects;
+    int current_song_number = 0;
+
+    public int colorBackground, colorSelected;
 
     SongAdapter(Context context) {
         ctx = context;
@@ -55,7 +58,7 @@ public class SongAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.song, parent, false);
         }
 
-        Song p = getSong(position);
+        Song p = (Song) getItem(position);
 
         StringBuilder s = new StringBuilder();
         s.append(p.getSong_number());
@@ -63,11 +66,19 @@ public class SongAdapter extends BaseAdapter {
         ((TextView) view.findViewById(R.id.tvSongTitle)).setText(p.getSong_title());
         ((TextView) view.findViewById(R.id.tvSongUsername)).setText(p.getSong_username());
 
+        if (p.getSong_number() == current_song_number) {
+            view.setBackgroundColor(colorSelected);
+        }
+        else {
+            view.setBackgroundColor(colorBackground);
+        }
         return view;
     }
 
-    // товар по позиции
-    Song getSong(int position) {
-        return ((Song) getItem(position));
+    public void setCurrentSongNumber(int songNumber) {
+        if (current_song_number != songNumber) {
+            current_song_number = songNumber;
+            notifyDataSetChanged();
+        }
     }
 }

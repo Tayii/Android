@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 youTubePlayer.addListener(youTubePlayerTracker);
                 bYoutubePlayerReady = true;
                 loadStreamerPlaylist(false);
-                toggleAsyncPlaylistLoadingSafe();
+                toggleAsyncPlaylistLoadingSafe(false);
             }
 
             @Override
@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         pbPlaylistLoading.setVisibility(View.INVISIBLE);
 
         adapter = new SongAdapter(this);
+        adapter.colorSelected = getResources().getColor(R.color.colorSelectedItem);
+        adapter.colorBackground = getResources().getColor(R.color.colorBackground);
         lvPlaylist = findViewById(R.id.lvPlaylist);
         lvPlaylist.setAdapter(adapter);
         lvPlaylist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -174,13 +176,13 @@ public class MainActivity extends AppCompatActivity {
                 savePreferenceByString(R.string.miPlaylistSync, bPlaylistSync);
                 btnPrev.setEnabled(!bPlaylistSync);
                 btnNext.setEnabled(!bPlaylistSync);
-                toggleAsyncPlaylistLoadingSafe();
+                toggleAsyncPlaylistLoadingSafe(true);
                 return true;
             case R.id.miRefreshPlaylist:
                 bRefreshPlaylist = !bRefreshPlaylist;
                 item.setChecked(bRefreshPlaylist);
                 savePreferenceByString(R.string.miRefreshPlaylist, bRefreshPlaylist);
-                toggleAsyncPlaylistLoadingSafe();
+                toggleAsyncPlaylistLoadingSafe(true);
                 return true;
             case R.id.miSongAutoswitch:
                 bSongAutoswitch = !bSongAutoswitch;
@@ -192,13 +194,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void toggleAsyncPlaylistLoadingSafe() {
+    void toggleAsyncPlaylistLoadingSafe(boolean refresh_now) {
         if (!bYoutubePlayerReady) {
             return;
         }
         if (bPlaylistSync || bRefreshPlaylist) {
             if (mt == null) {
-                setPbPlaylistUpdatingProgress(100);
+                if (refresh_now) {
+                    setPbPlaylistUpdatingProgress(100);
+                }
                 mt = new MyTask();
                 mt.execute();
             }
@@ -238,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
     void loadStreamerPlaylist(final boolean safe) {
         if (!safe) {
-            pbPlaylistLoading.setVisibility(View.VISIBLE);
+//            pbPlaylistLoading.setVisibility(View.VISIBLE);
         }
         String streamer_name = teStreamerName.getText().toString();
         String url = "http://tayi-wp.ddns.net/"
@@ -335,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             tvCurrentSongUsername.setText(currentSong.getSong_username());
+            adapter.setCurrentSongNumber(currentSongNumber);
         }
     }
 

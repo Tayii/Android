@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     YouTubePlayerView youTubePlayerView;
     YouTubePlayerCallback youTubePlayerCallbackLoadCurrentVideo;
     TextView tvCurrentSongNumber, tvMaxSongNumber, tvCurrentSongUsername;
+    Button btnPrev, btnNext;
     TextView tvCurrentPlaylistType;
     ProgressBar pbPlaylistLoading, pbPlaylistUpdating;
     int pbPlaylistUpdatingProgress = 0;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        teStreamerName = (TextInputEditText) findViewById(R.id.teStreamerName);
+        teStreamerName = findViewById(R.id.teStreamerName);
 
         teStreamerName.setOnEditorActionListener(
                 new TextInputEditText.OnEditorActionListener() {
@@ -117,18 +119,21 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        tvCurrentSongNumber = ((TextView) findViewById(R.id.tvSongNumber));
-        tvMaxSongNumber = ((TextView) findViewById(R.id.tvMaxSongNumber));
-        tvCurrentSongUsername = ((TextView) findViewById(R.id.tvSongUsername));
+        tvCurrentSongNumber = findViewById(R.id.tvSongNumber);
+        tvMaxSongNumber = findViewById(R.id.tvMaxSongNumber);
+        tvCurrentSongUsername = findViewById(R.id.tvSongUsername);
 
-        tvCurrentPlaylistType = ((TextView) findViewById(R.id.tvCurrentPlaylistType));
+        btnPrev = findViewById(R.id.btnPrevSong);
+        btnNext = findViewById(R.id.btnNextSong);
 
-        pbPlaylistLoading = ((ProgressBar) findViewById(R.id.pbPlaylistLoading));
-        pbPlaylistUpdating = ((ProgressBar) findViewById(R.id.pbPlaylistUpdating));
+        tvCurrentPlaylistType = findViewById(R.id.tvCurrentPlaylistType);
+
+        pbPlaylistLoading = findViewById(R.id.pbPlaylistLoading);
+        pbPlaylistUpdating = findViewById(R.id.pbPlaylistUpdating);
         pbPlaylistLoading.setVisibility(View.INVISIBLE);
 
         adapter = new SongAdapter(this);
-        lvPlaylist = (ListView) findViewById(R.id.lvPlaylist);
+        lvPlaylist = findViewById(R.id.lvPlaylist);
         lvPlaylist.setAdapter(adapter);
         lvPlaylist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -167,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                 bPlaylistSync = !bPlaylistSync;
                 item.setChecked(bPlaylistSync);
                 savePreferenceByString(R.string.miPlaylistSync, bPlaylistSync);
+                btnPrev.setEnabled(!bPlaylistSync);
+                btnNext.setEnabled(!bPlaylistSync);
                 toggleAsyncPlaylistLoadingSafe();
                 return true;
             case R.id.miRefreshPlaylist:
@@ -300,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
             maxSongNumber = Collections.max(currentPlaylist.keySet());
         }
         if (maxSongNumber > 0) {
-            tvMaxSongNumber.setText("/" + String.valueOf(maxSongNumber));
+            tvMaxSongNumber.setText(String.valueOf(maxSongNumber));
         }
         else {
             tvMaxSongNumber.setText("");

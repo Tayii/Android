@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -13,6 +14,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
+        android:textColorHint="@color/colorPrimary60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/teStreamerNameHint"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary100" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -48,8 +51,22 @@
         android:maxLines="1"
         android:text="@string/VERYBIGSTRING"
         android:textAlignment="textStart"
-        app:layout_constraintEnd_toStartOf="@+id/tvMaxSongNumber"
+        android:textColor="@color/colorPrimary87"
+        app:layout_constraintEnd_toStartOf="@+id/tvLabelNumber"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
+
+    <TextView
+        android:id="@+id/tvLabelNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
+        android:text="@string/tvLabelNumber"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toStartOf="@+id/tvMaxSongNumber"
+        app:layout_constraintStart_toEndOf="@+id/tvSongNumber"
         app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
 
     <TextView
@@ -61,8 +78,9 @@
         android:maxLines="1"
         android:text="@string/VERYBIGSTRING"
         android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary87"
         app:layout_constraintEnd_toStartOf="@+id/tvLabelUsername"
-        app:layout_constraintStart_toEndOf="@+id/tvSongNumber"
+        app:layout_constraintStart_toEndOf="@+id/tvLabelNumber"
         app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
 
     <TextView
@@ -72,6 +90,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
         android:text="@string/tvLabelUsername"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toStartOf="@+id/tvSongUsername"
         app:layout_constraintStart_toEndOf="@+id/tvMaxSongNumber"
         app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
@@ -87,6 +106,7 @@
         android:maxLines="1"
         android:text="@string/VERYBIGSTRING"
         android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvLabelUsername"
         app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
@@ -120,6 +140,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="1dp"
         android:text="@string/tvLabelCurrentPlaylistType"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toStartOf="@+id/tvCurrentPlaylistType"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPrevSong" />
@@ -134,6 +155,7 @@
         android:maxLines="1"
         android:text="@string/VERYBIGSTRING"
         android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary87"
         app:layout_constraintBottom_toTopOf="@+id/pbPlaylistUpdating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvLabelCurrentPlaylistType"

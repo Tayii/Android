@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PlaylistApp</string>
-    <string name="tvLogin">Log in</string>
     <string name="teStreamerNameHint">Streamer name</string>
+    <string name="tvLabelNumber">/</string>
     <string name="tvLabelUsername">добавлено: </string>
     <string name="btnPrevSong">Previous</string>
     <string name="btnNextSong">Next</string>

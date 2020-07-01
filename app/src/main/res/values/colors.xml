@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary100">#FFF18E4E</color>
     <color name="colorPrimary87">#DEF18E4E</color>
-    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhite">#AAA</color>
     <color name="colorPrimary60">#99F18E4E</color>
     <color name="colorPrimary12">#1FF18E4E</color>
+    <color name="colorBackground">#333</color>
 </resources>

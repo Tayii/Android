@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PlaylistApp</string>
+    <string name="tvLogin">Log in</string>
+    <string name="teStreamerNameHint">Streamer name</string>
+    <string name="tvLabelUsername">добавлено: </string>
+    <string name="btnPrevSong">Previous</string>
+    <string name="btnNextSong">Next</string>
+    <string name="miPlaylistSync">Синхронизация со стримером</string>
+    <string name="miSongAutoswitch">Автопереключение песен</string>
+    <string name="miRefreshPlaylist">Автообновление плейлиста</string>
+    <string name="tvLabelCurrentPlaylistType">Current playlist: </string>
+</resources>

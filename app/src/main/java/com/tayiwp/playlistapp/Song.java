@@ -11,16 +11,8 @@ public class Song {
         return song_username;
     }
 
-    public void setSong_username(String song_username) {
-        this.song_username = song_username;
-    }
-
     public String getSong_title() {
         return song_title;
-    }
-
-    public void setSong_title(String song_title) {
-        this.song_title = song_title;
     }
 
     public int getSong_number() {
@@ -35,15 +27,7 @@ public class Song {
         return song_link;
     }
 
-    public void setSong_link(String song_link) {
-        this.song_link = song_link;
-    }
-
     public int getStart_time() {
         return start_time;
-    }
-
-    public void setStart_time(int start_time) {
-        this.start_time = start_time;
     }
 }

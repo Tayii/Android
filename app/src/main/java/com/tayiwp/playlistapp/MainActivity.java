@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (currentPlaylist == null) {
             tvCurrentPlaylistType.setText("not found");
-            adapter.setObjects(new HashMap<Integer, Song>());
+            adapter.setObjects(null);
         }
         else {
             tvCurrentPlaylistType.setText(allPlaylists.getCurrent_playlisttype());

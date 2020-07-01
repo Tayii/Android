@@ -27,13 +27,15 @@ public class SongAdapter extends BaseAdapter {
 
     public void setObjects(HashMap<Integer, Song> songs) {
         ArrayList<Song> objects = new ArrayList<>();
-        for (int song_number: songs.keySet()) {
-            Song song = songs.get(song_number);
-            if (song.getSong_link() == "") {
-                continue;
+        if (songs != null) {
+            for (int song_number: songs.keySet()) {
+                Song song = songs.get(song_number);
+                if (song.getSong_link() == "") {
+                    continue;
+                }
+                song.setSong_number(song_number);
+                objects.add(song);
             }
-            song.setSong_number(song_number);
-            objects.add(song);
         }
         this.objects = objects;
         this.notifyDataSetChanged();

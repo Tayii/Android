@@ -174,8 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 bPlaylistSync = !bPlaylistSync;
                 item.setChecked(bPlaylistSync);
                 savePreferenceByString(R.string.miPlaylistSync, bPlaylistSync);
-                btnPrev.setEnabled(!bPlaylistSync);
-                btnNext.setEnabled(!bPlaylistSync);
+                updateButtonEnabled();
                 toggleAsyncPlaylistLoadingSafe(true);
                 return true;
             case R.id.miRefreshPlaylist:
@@ -242,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
 
     void loadStreamerPlaylist(final boolean safe) {
         if (!safe) {
-//            pbPlaylistLoading.setVisibility(View.VISIBLE);
+            pbPlaylistLoading.setVisibility(View.VISIBLE);
         }
         String streamer_name = teStreamerName.getText().toString();
         String url = "http://tayi-wp.ddns.net/"
@@ -339,8 +338,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             tvCurrentSongUsername.setText(currentSong.getSong_username());
-            adapter.setCurrentSongNumber(currentSongNumber);
         }
+        adapter.setCurrentSongNumber(currentSongNumber);
     }
 
     void playCurrentSongSafe() {
@@ -377,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
     void switchToSong(int song_number) {
         currentSongNumber = song_number;
+        updateButtonEnabled();
         updateCurrentSong();
         playCurrentSong();
     }
@@ -387,6 +387,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnNextSongOnClick(View v) {
         switchToSongSafe(currentSongNumber + 1);
+    }
+
+    void updateButtonEnabled() {
+        btnPrev.setEnabled(!bPlaylistSync && currentSongNumber > 1);
+        btnNext.setEnabled(!bPlaylistSync && currentSongNumber < maxSongNumber + 1);
     }
 
     void savePreferenceByString(int string_id, String preference) {

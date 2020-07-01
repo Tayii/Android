@@ -29,6 +29,9 @@ public class SongAdapter extends BaseAdapter {
         ArrayList<Song> objects = new ArrayList<>();
         for (int song_number: songs.keySet()) {
             Song song = songs.get(song_number);
+            if (song.getSong_link() == "") {
+                continue;
+            }
             song.setSong_number(song_number);
             objects.add(song);
         }

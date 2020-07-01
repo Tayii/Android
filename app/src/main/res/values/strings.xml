@@ -9,4 +9,5 @@
     <string name="miSongAutoswitch">Автопереключение песен</string>
     <string name="miRefreshPlaylist">Автообновление плейлиста</string>
     <string name="tvLabelCurrentPlaylistType">Current playlist: </string>
+    <string name="VERYBIGSTRING">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</string>
 </resources>

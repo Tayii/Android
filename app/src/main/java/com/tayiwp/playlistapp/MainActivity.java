@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         if (!safe) {
             pbPlaylistLoading.setVisibility(View.VISIBLE);
         }
-        String streamer_name = teStreamerName.getText().toString();
+        String streamer_name = teStreamerName.getText().toString().toLowerCase();
         String url = "http://tayi-wp.ddns.net/"
                 .concat(streamer_name)
                 .concat("/playlist/");
@@ -339,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             tvCurrentSongUsername.setText(currentSong.getSong_username());
         }
+        updateButtonEnabled();
         adapter.setCurrentSongNumber(currentSongNumber);
     }
 
@@ -376,7 +377,6 @@ public class MainActivity extends AppCompatActivity {
 
     void switchToSong(int song_number) {
         currentSongNumber = song_number;
-        updateButtonEnabled();
         updateCurrentSong();
         playCurrentSong();
     }

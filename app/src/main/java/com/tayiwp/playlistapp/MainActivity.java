@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Song currentSong;
     HashMap<Integer, Song> currentPlaylist;
     MyTask mt;
+    OkHttpClient okHttpClient;
 
     TextInputEditText teStreamerName;
     YouTubePlayerView youTubePlayerView;
@@ -69,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .build();
 
         teStreamerName = findViewById(R.id.teStreamerName);
 
@@ -252,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
         ServerApi serverApi = retrofit.create(ServerApi.class);
         Call<AllPlaylists> playlists = serverApi.getPlaylists();

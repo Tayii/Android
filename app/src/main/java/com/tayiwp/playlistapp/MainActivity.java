@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.stream.MalformedJsonException;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -28,6 +29,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTube
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerUtils;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
+import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -276,7 +278,15 @@ public class MainActivity extends AppCompatActivity {
                 if (!safe) {
                     pbPlaylistLoading.setVisibility(View.INVISIBLE);
                 }
-                showError(t);
+                if (t.getClass() == UnknownHostException.class) {
+                    showError(R.string.errNetwork);
+                }
+                else if (t.getClass() == MalformedJsonException.class) {
+                    showError(R.string.errWrongJSON);
+                }
+                else {
+                    showError(t);
+                }
                 setPbPlaylistUpdatingProgress(0);
             }
         });
@@ -324,9 +334,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void updateCurrentSong() {
-        StringBuilder s = new StringBuilder();
-        s.append(currentSongNumber);
-        tvCurrentSongNumber.setText(s.toString());
+        tvCurrentSongNumber.setText(String.valueOf(currentSongNumber));
         if (currentPlaylist == null) {
             currentSong = null;
         }
@@ -433,6 +441,10 @@ public class MainActivity extends AppCompatActivity {
         if (savedStreamerName.length() > 0) {
             Toast.makeText(this, "Last session loaded", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void showError(int string_id) {
+        Toast.makeText(this, "Error: " + getString(string_id), Toast.LENGTH_LONG).show();
     }
 
     void showError(Throwable t) {

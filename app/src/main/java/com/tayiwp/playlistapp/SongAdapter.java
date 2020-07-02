@@ -34,6 +34,7 @@ public class SongAdapter extends BaseAdapter {
                     continue;
                 }
                 song.setSong_number(song_number);
+                song.setList_position(objects.size());
                 objects.add(song);
             }
         }
@@ -65,9 +66,7 @@ public class SongAdapter extends BaseAdapter {
 
         Song p = (Song) getItem(position);
 
-        StringBuilder s = new StringBuilder();
-        s.append(p.getSong_number());
-        ((TextView) view.findViewById(R.id.tvSongNumber)).setText(s);
+        ((TextView) view.findViewById(R.id.tvSongNumber)).setText(String.valueOf(p.getSong_number()));
         ((TextView) view.findViewById(R.id.tvSongTitle)).setText(p.getSong_title());
         ((TextView) view.findViewById(R.id.tvSongUsername)).setText(p.getSong_username());
 

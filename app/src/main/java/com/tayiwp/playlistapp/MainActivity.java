@@ -340,6 +340,9 @@ public class MainActivity extends AppCompatActivity {
             tvCurrentSongUsername.setText(currentSong.getSong_username());
         }
         updateButtonEnabled();
+        if (bPlaylistSync && currentSong != null) {
+            lvPlaylist.smoothScrollToPosition(currentSong.getList_position());
+        }
         adapter.setCurrentSongNumber(currentSongNumber);
     }
 

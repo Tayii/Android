@@ -340,10 +340,20 @@ public class MainActivity extends AppCompatActivity {
             tvCurrentSongUsername.setText(currentSong.getSong_username());
         }
         updateButtonEnabled();
-        if (bPlaylistSync && currentSong != null) {
+        scrollToListItemSafe();
+        adapter.setCurrentSongNumber(currentSongNumber);
+    }
+
+    void scrollToListItemSafe() {
+        if (bPlaylistSync) {
+            scrollToListItem();
+        }
+    }
+
+    void scrollToListItem() {
+        if (currentSong != null) {
             lvPlaylist.smoothScrollToPosition(currentSong.getList_position());
         }
-        adapter.setCurrentSongNumber(currentSongNumber);
     }
 
     void playCurrentSongSafe() {
@@ -386,10 +396,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnPrevSongOnClick(View v) {
         switchToSongSafe(currentSongNumber - 1);
+        scrollToListItem();
     }
 
     public void btnNextSongOnClick(View v) {
         switchToSongSafe(currentSongNumber + 1);
+        scrollToListItem();
     }
 
     void updateButtonEnabled() {
